@@ -1,6 +1,16 @@
 import React from "react";
 import { hot } from "react-hot-loader/root";
+import Title from "./Title";
 
-const App = () => <div>Hello from React!</div>;
+const App = () => (
+  <>
+    <Title />
+    <div>Hello from React !</div>
+  </>
+);
 
 export default hot(App);
+
+if (module.hot) {
+  module.hot.accept("./Title");
+}
