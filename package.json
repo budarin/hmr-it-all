@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "start:server": "webpack --config  webpack.config.server.js",
+    "start:server": "sleep 5 && webpack --config  webpack.config.server.js",
     "start:client": "webpack-dev-server --config webpack.config.client.js",
-    "start": "rimraf ./dist && npm-run-all --parallel start:server start:client"
+    "start": "rimraf ./dist && npm-run-all --parallel start:client start:server"
   },
   "license": "MIT",
   "dependencies": {

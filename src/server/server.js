@@ -1,9 +1,22 @@
-import express from "express";
+import fs from "fs";
+import path from "path";
 import React from "react";
+import express from "express";
 import { renderToString } from "react-dom/server";
 import App from "../common/App";
 
 const app = express();
+
+const prefix = process.env.NODE_ENV === "development" ? "./dist/" : "./";
+
+try {
+  console.log(
+    "file length = " +
+      fs.readFileSync(path.resolve(`${prefix}client/client.js`), "utf8").length
+  );
+} catch (error) {
+  console.log(error);
+}
 
 app.get("/api", (req, res) => {
   res.send({ message: "I am a server route and can also be hot reloaded!" });

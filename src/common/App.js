@@ -5,12 +5,8 @@ import Title from "./Title";
 const App = () => (
   <>
     <Title />
-    <div>Hello from React !</div>
+    <div>Hello from React!</div>
   </>
 );
 
 export default hot(App);
-
-if (module.hot) {
-  module.hot.accept("./Title");
-}
