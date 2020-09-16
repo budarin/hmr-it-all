@@ -7,10 +7,10 @@ import App from '../common/App';
 
 const app = express();
 
-const prefix = process.env.NODE_ENV === 'development' ? './dist/' : './';
+const prefix = `${process.env.NODE_ENV === 'development' ? './dist/' : './'}client/`;
 
 try {
-    console.log('file length = ' + fs.readFileSync(path.resolve(`${prefix}client/client.js`), 'utf8').length);
+    console.log(`\n\nclient.js file length = ${fs.readFileSync(path.resolve(`${prefix}client.js`), 'utf8').length}`);
 } catch (error) {
     console.log(error);
 }
