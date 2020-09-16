@@ -10,7 +10,7 @@ const app = express();
 const prefix = `${process.env.NODE_ENV === 'development' ? './dist/' : './'}client/`;
 
 try {
-    console.log(`\n\nclient.js file length = ${fs.readFileSync(path.resolve(`${prefix}client.js`), 'utf8').length}`);
+    console.log(`\n\nclient.js file length: ${fs.readFileSync(path.resolve(`${prefix}client.js`), 'utf8').length}`);
 } catch (error) {
     console.log(error);
 }
