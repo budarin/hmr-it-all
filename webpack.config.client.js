@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
     target: 'web',
@@ -40,6 +41,10 @@ module.exports = {
             __DEV__: true,
             __SERVER__: false,
             __CLIENT__: true,
+        }),
+        new ManifestPlugin({
+            fileName: 'assets-manifest.json',
+            writeToFileEmit: true,
         }),
     ],
     devServer: {
