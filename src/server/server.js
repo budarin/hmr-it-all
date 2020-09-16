@@ -23,18 +23,20 @@ app.get('*', (req, res) => {
     const application = renderToString(<App />);
 
     const html = `<!doctype html>
-    <html class="no-js" lang="">
+    <html lang="ru-RU">
         <head>
             <meta charset="utf-8">
             <meta http-equiv="x-ua-compatible" content="ie=edge">
             <title>HMR all the things!</title>
-            <meta name="description" content="">
+            <meta name="description" content="Sample HMR demo page.">
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="preload" href="client.js" as="script">
         </head>
         <body>
-            <div>App</div>
-            <br />
             <div id="root">${application}</div>
+            <br />
+            <div>Server text</div>
+
             <script src="/client.js"></script>
         </body>
     </html>`;

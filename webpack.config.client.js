@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     target: 'web',
@@ -28,6 +29,13 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, './src/common/assets/robots.txt'),
+                },
+            ],
+        }),
         new webpack.DefinePlugin({
             __DEV__: true,
             __SERVER__: false,
