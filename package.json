@@ -2,7 +2,7 @@
     "scripts": {
         "start:server": "node ./tools/waitForBuildingClient && webpack --config  webpack.config.server.js",
         "start:client": "webpack-dev-server --config webpack.config.client.js",
-        "start": "rimraf ./dist && npm-run-all --parallel start:client start:server"
+        "start": "rimraf ./dist && npm-run-all --parallel start:server start:client"
     },
     "license": "MIT",
     "dependencies": {

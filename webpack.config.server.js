@@ -1,15 +1,20 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const StartServerPlugin = require('start-server-webpack-plugin');
+
+const hmrWpString = 'webpack/hot/poll?1000';
 
 module.exports = {
     watch: true,
     target: 'node',
     mode: 'development',
-    entry: ['webpack/hot/poll?1000', './src/server/index'],
-    output: { path: path.join(__dirname, './dist'), filename: 'server.js' },
-    externals: [nodeExternals({ allowlist: ['webpack/hot/poll?1000'] })],
+    entry: [hmrWpString, './src/server/index'],
+    output: {
+        path: path.join(__dirname, './dist'),
+        filename: 'server.js',
+    },
+    externals: [nodeExternals({ allowlist: [hmrWpString] })],
     module: {
         rules: [
             {
