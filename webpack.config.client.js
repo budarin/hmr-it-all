@@ -1,51 +1,48 @@
-const webpack = require("webpack");
-const path = require("path");
+const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-  mode: "development",
-  devtool: "inline-source-map",
-  entry: ["react-hot-loader/patch", "./src/client/index"],
-  target: "web",
-  resolve: {
-    extensions: [".js", ".json"],
-    modules: ["node_modules", "src"],
-    alias: { "react-dom": "@hot-loader/react-dom" },
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js?$/,
-        use: "babel-loader",
-        exclude: /node_modules/,
-        include: [
-          path.join(__dirname, "src/client"),
-          path.join(__dirname, "src/common"),
-        ],
-      },
-    ],
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      __DEV__: true,
-      __SERVER__: false,
-      __CLIENT__: true,
-    }),
-  ],
-  devServer: {
-    // host: "localhost",
-    publicPath: "/",
-    port: 3000,
-    historyApiFallback: true,
-    hot: true,
-    proxy: {
-      "*": "http://localhost:5000",
+    target: 'web',
+    mode: 'development',
+    devtool: 'inline-source-map',
+    entry: ['react-hot-loader/patch', './src/client/index'],
+    output: {
+        path: path.join(__dirname, './dist/client'),
+        publicPath: '/',
+        filename: 'client.js',
     },
-    writeToDisk: true,
-  },
-  output: {
-    path: path.join(__dirname, "./dist/client"),
-    publicPath: "/",
-    filename: "client.js",
-  },
+    resolve: {
+        extensions: ['.js', '.json'],
+        modules: ['node_modules', 'src'],
+        alias: { 'react-dom': '@hot-loader/react-dom' },
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js?$/,
+                use: 'babel-loader',
+                exclude: /node_modules/,
+                include: [path.join(__dirname, 'src/client'), path.join(__dirname, 'src/common')],
+            },
+        ],
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            __DEV__: true,
+            __SERVER__: false,
+            __CLIENT__: true,
+        }),
+    ],
+    devServer: {
+        hot: true,
+        port: 3000,
+        host: 'localhost',
+        publicPath: '/',
+        historyApiFallback: true,
+        proxy: {
+            '*': 'http://localhost:3001',
+        },
+        writeToDisk: true,
+    },
 };

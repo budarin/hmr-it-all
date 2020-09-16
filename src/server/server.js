@@ -1,31 +1,28 @@
-import fs from "fs";
-import path from "path";
-import React from "react";
-import express from "express";
-import { renderToString } from "react-dom/server";
-import App from "../common/App";
+import fs from 'fs';
+import path from 'path';
+import React from 'react';
+import express from 'express';
+import { renderToString } from 'react-dom/server';
+import App from '../common/App';
 
 const app = express();
 
-const prefix = process.env.NODE_ENV === "development" ? "./dist/" : "./";
+const prefix = process.env.NODE_ENV === 'development' ? './dist/' : './';
 
 try {
-  console.log(
-    "file length = " +
-      fs.readFileSync(path.resolve(`${prefix}client/client.js`), "utf8").length
-  );
+    console.log('file length = ' + fs.readFileSync(path.resolve(`${prefix}client/client.js`), 'utf8').length);
 } catch (error) {
-  console.log(error);
+    console.log(error);
 }
 
-app.get("/api", (req, res) => {
-  res.send({ message: "I am a server route and can also be hot reloaded!" });
+app.get('/api', (req, res) => {
+    res.send({ message: 'I am a server route and can also be hot reloaded!' });
 });
 
-app.get("*", (req, res) => {
-  let application = renderToString(<App />);
+app.get('*', (req, res) => {
+    const application = renderToString(<App />);
 
-  let html = `<!doctype html>
+    const html = `<!doctype html>
     <html class="no-js" lang="">
         <head>
             <meta charset="utf-8">
@@ -42,11 +39,7 @@ app.get("*", (req, res) => {
         </body>
     </html>`;
 
-  res.send(html);
+    res.send(html);
 });
 
 export default app;
-
-if (__DEV__ && module.hot) {
-  module.hot.accept();
-}
