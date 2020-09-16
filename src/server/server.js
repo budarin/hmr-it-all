@@ -46,3 +46,7 @@ app.get("*", (req, res) => {
 });
 
 export default app;
+
+if (__DEV__ && module.hot) {
+  module.hot.accept();
+}

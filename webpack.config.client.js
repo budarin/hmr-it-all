@@ -27,7 +27,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      "process.env": { BUILD_TARGET: JSON.stringify("client") },
+      __DEV__: true,
+      __SERVER__: false,
+      __CLIENT__: true,
     }),
   ],
   devServer: {

@@ -26,7 +26,9 @@ module.exports = {
     new StartServerPlugin("server.js"),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      "process.env": { BUILD_TARGET: JSON.stringify("server") },
+      __DEV__: true,
+      __SERVER__: true,
+      __CLIENT__: false,
     }),
   ],
   output: { path: path.join(__dirname, "./dist"), filename: "server.js" },
