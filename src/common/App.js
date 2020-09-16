@@ -1,5 +1,4 @@
 import React from "react";
-import { hot } from "react-hot-loader/root";
 import Title from "./Title";
 
 const App = () => (
@@ -9,4 +8,8 @@ const App = () => (
   </>
 );
 
-export default hot(App);
+const isDevClient =
+  process.env.BUILD_TARGET === "client" &&
+  process.env.NODE_ENV === "development";
+
+export default isDevClient ? require("react-hot-loader/root").hot(App) : App;

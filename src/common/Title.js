@@ -4,6 +4,6 @@ const Title = () => <h1>Header</h1>;
 
 export default Title;
 
-if (module.hot) {
+if (process.env.NODE_ENV === "development" && module.hot) {
   module.hot.accept();
 }
