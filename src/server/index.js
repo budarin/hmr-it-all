@@ -1,9 +1,13 @@
 import http from 'http';
 import app from './server';
 
-const server = http.createServer(app);
+const PORT = 3000;
 let currentApp = app;
-server.listen(3001);
+
+const server = http.createServer(app);
+server.listen(PORT);
+
+console.log(`\nServer run on http://localhost:${PORT}\n`);
 
 if (module.hot) {
     module.hot.accept('./server', () => {
